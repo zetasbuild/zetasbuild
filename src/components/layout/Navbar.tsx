@@ -33,7 +33,7 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
     { name: "Solutions", href: isSubPage ? "/#solutions" : "#solutions" },
     { name: "Projects", href: "/projects" },
     { name: "Technologies", href: isSubPage ? "/#technologies" : "#technologies" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -73,7 +73,8 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
                   (link.name === "Home" && pathname === "/") ||
                   (link.name === "About" && pathname === "/about") ||
                   (link.name === "Services" && pathname === "/services") ||
-                  (link.name === "Projects" && pathname === "/projects");
+                  (link.name === "Projects" && pathname === "/projects") ||
+                  (link.name === "Contact" && pathname === "/contact");
 
                 return (
                   <Link
