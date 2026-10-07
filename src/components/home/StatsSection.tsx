@@ -10,25 +10,25 @@ export function StatsSection() {
       value: "50+",
       label: "Digital Projects",
       icon: Rocket,
-      iconColor: "text-blue-600 bg-blue-50 border-blue-200/60",
+      iconColor: "text-blue-600 bg-blue-50/90 border-blue-100",
     },
     {
       value: "20+",
       label: "Businesses Supported",
       icon: Users,
-      iconColor: "text-cyan-600 bg-cyan-50 border-cyan-200/60",
+      iconColor: "text-purple-600 bg-purple-50/90 border-purple-100",
     },
     {
       value: "10+",
       label: "Technology Solutions",
       icon: Layers,
-      iconColor: "text-indigo-600 bg-indigo-50 border-indigo-200/60",
+      iconColor: "text-blue-600 bg-blue-50/90 border-blue-100",
     },
     {
       value: "100%",
       label: "Client-Focused Approach",
       icon: ShieldCheck,
-      iconColor: "text-purple-600 bg-purple-50 border-purple-200/60",
+      iconColor: "text-purple-600 bg-purple-50/90 border-purple-100",
     },
   ];
 

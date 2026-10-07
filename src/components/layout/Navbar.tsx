@@ -67,7 +67,7 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-slate-50/80 border border-slate-200/60 rounded-full px-4 py-1.5 shadow-2xs backdrop-blur-xs">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navLinks.map((link) => {
                 const isActive =
                   (link.name === "Home" && pathname === "/") ||
@@ -80,17 +80,17 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 ${
+                    className={`relative text-sm font-medium transition-colors py-1 ${
                       isActive
-                        ? "text-indigo-600 font-semibold bg-white shadow-2xs"
-                        : "text-slate-600 hover:text-indigo-600 hover:bg-white/80"
+                        ? "text-blue-600 font-semibold"
+                        : "text-slate-700 hover:text-blue-600"
                     }`}
                   >
                     {link.name}
                     {isActive && (
                       <motion.span
-                        layoutId="activeNavPill"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-indigo-600"
+                        layoutId="activeNavIndicator"
+                        className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-blue-600 rounded-full"
                       />
                     )}
                   </Link>
