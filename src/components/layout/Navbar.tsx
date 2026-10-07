@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 interface NavbarProps {
   onOpenInquiry?: () => void;
@@ -13,6 +14,7 @@ interface NavbarProps {
 export function Navbar({ onOpenInquiry }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,13 +24,15 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isAboutPage = pathname === "/about";
+
   const navLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#who-we-are" },
-    { name: "Services", href: "#services" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Projects", href: "#projects" },
-    { name: "Technologies", href: "#technologies" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: isAboutPage ? "/#services" : "#services" },
+    { name: "Solutions", href: isAboutPage ? "/#solutions" : "#solutions" },
+    { name: "Projects", href: isAboutPage ? "/#projects" : "#projects" },
+    { name: "Technologies", href: isAboutPage ? "/#technologies" : "#technologies" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -64,15 +68,31 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-slate-50/80 border border-slate-200/60 rounded-full px-4 py-1.5 shadow-2xs backdrop-blur-xs">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-white rounded-full transition-all duration-200"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive =
+                  (link.name === "Home" && pathname === "/") ||
+                  (link.name === "About" && pathname === "/about");
+
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 ${
+                      isActive
+                        ? "text-indigo-600 font-semibold bg-white shadow-2xs"
+                        : "text-slate-600 hover:text-indigo-600 hover:bg-white/80"
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNavPill"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-indigo-600"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Action Button */}
@@ -81,7 +101,6 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
                 onClick={onOpenInquiry}
                 className="relative inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 rounded-full shadow-md shadow-indigo-500/25 hover:shadow-lg hover:shadow-indigo-500/35 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden group bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"
               >
-                {/* Subtle shine hover effect */}
                 <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
                 <span className="relative flex items-center gap-1.5">
                   Let&apos;s Build Together
@@ -124,7 +143,12 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2.5 text-base font-medium text-slate-800 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-colors"
+                  className={`px-4 py-2.5 text-base font-medium rounded-xl transition-colors ${
+                    (link.name === "Home" && pathname === "/") ||
+                    (link.name === "About" && pathname === "/about")
+                      ? "text-indigo-600 font-semibold bg-indigo-50"
+                      : "text-slate-800 hover:text-indigo-600 hover:bg-slate-50"
+                  }`}
                 >
                   {link.name}
                 </Link>
