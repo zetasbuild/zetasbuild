@@ -24,15 +24,15 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isAboutPage = pathname === "/about";
+  const isSubPage = pathname !== "/";
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services", href: isAboutPage ? "/#services" : "#services" },
-    { name: "Solutions", href: isAboutPage ? "/#solutions" : "#solutions" },
-    { name: "Projects", href: isAboutPage ? "/#projects" : "#projects" },
-    { name: "Technologies", href: isAboutPage ? "/#technologies" : "#technologies" },
+    { name: "Services", href: "/services" },
+    { name: "Solutions", href: isSubPage ? "/#solutions" : "#solutions" },
+    { name: "Projects", href: isSubPage ? "/#projects" : "#projects" },
+    { name: "Technologies", href: isSubPage ? "/#technologies" : "#technologies" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -71,7 +71,8 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
               {navLinks.map((link) => {
                 const isActive =
                   (link.name === "Home" && pathname === "/") ||
-                  (link.name === "About" && pathname === "/about");
+                  (link.name === "About" && pathname === "/about") ||
+                  (link.name === "Services" && pathname === "/services");
 
                 return (
                   <Link
