@@ -31,7 +31,7 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Solutions", href: isSubPage ? "/#solutions" : "#solutions" },
-    { name: "Projects", href: isSubPage ? "/#projects" : "#projects" },
+    { name: "Projects", href: "/projects" },
     { name: "Technologies", href: isSubPage ? "/#technologies" : "#technologies" },
     { name: "Contact", href: "#contact" },
   ];
@@ -72,7 +72,8 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
                 const isActive =
                   (link.name === "Home" && pathname === "/") ||
                   (link.name === "About" && pathname === "/about") ||
-                  (link.name === "Services" && pathname === "/services");
+                  (link.name === "Services" && pathname === "/services") ||
+                  (link.name === "Projects" && pathname === "/projects");
 
                 return (
                   <Link
