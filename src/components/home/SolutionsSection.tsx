@@ -2,20 +2,18 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  Briefcase,
-  ShoppingCart,
-  CalendarCheck,
-  Headphones,
+  Code2,
   Smartphone,
-  BarChart3,
-  CheckCircle2,
+  Settings,
+  Bot,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react";
 
 interface SolutionsSectionProps {
-  onOpenInquiry?: () => void;
+  onOpenInquiry?: (solutionName?: string) => void;
 }
 
 export function SolutionsSection({ onOpenInquiry }: SolutionsSectionProps) {
@@ -23,183 +21,162 @@ export function SolutionsSection({ onOpenInquiry }: SolutionsSectionProps) {
 
   const solutions = [
     {
-      title: "Business Management Systems",
-      desc: "Custom ERP & CRM workflow automation to streamline operations.",
-      icon: Briefcase,
-      color: "text-blue-600 bg-blue-50 border-blue-200",
-      features: ["Custom CRM Pipelines", "Automated Invoicing", "Real-time Operations KPI"],
+      title: "Web Development",
+      desc: "Modern, responsive websites built for performance, SEO and conversions.",
+      icon: Code2,
+      iconBg: "bg-[#EEF2FF] text-[#2563EB]",
+      arrowBg: "bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white",
+      activeBorder: "border-indigo-400 shadow-[0_8px_30px_rgba(99,102,241,0.12)]",
     },
     {
-      title: "E-commerce Platforms",
-      desc: "High-performance digital stores with seamless payment gateways.",
-      icon: ShoppingCart,
-      color: "text-purple-600 bg-purple-50 border-purple-200",
-      features: ["Inventory Automation", "Stripe & Multi-currency", "Sub-second Checkout"],
-    },
-    {
-      title: "Booking Systems",
-      desc: "Interactive reservation engines with automated scheduling.",
-      icon: CalendarCheck,
-      color: "text-cyan-600 bg-cyan-50 border-cyan-200",
-      features: ["Live Calendar Sync", "Instant Itinerary Quotes", "SMS & Email Confirmations"],
-    },
-    {
-      title: "Customer Service Portals",
-      desc: "Ticketing, live chat, and automated knowledge bases.",
-      icon: Headphones,
-      color: "text-emerald-600 bg-emerald-50 border-emerald-200",
-      features: ["AI Support Assistant", "Multi-tier Ticket Routing", "SLA Monitoring"],
-    },
-    {
-      title: "Enterprise Applications",
-      desc: "Secure, role-based cloud applications for growing teams.",
+      title: "Mobile Applications",
+      desc: "User-focused mobile experiences designed for Android and iOS.",
       icon: Smartphone,
-      color: "text-indigo-600 bg-indigo-50 border-indigo-200",
-      features: ["Role-Based Access Control", "Audit Logging & Security", "High-Concurrency Cloud"],
+      iconBg: "bg-[#F5F3FF] text-[#9333EA]",
+      arrowBg: "bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white",
+      activeBorder: "border-purple-400 shadow-[0_8px_30px_rgba(147,51,234,0.12)]",
     },
     {
-      title: "Digital Business Platforms",
-      desc: "Comprehensive analytics, tracking, and customer engagement hubs.",
-      icon: BarChart3,
-      color: "text-amber-600 bg-amber-50 border-amber-200",
-      features: ["Executive Dashboards", "Cross-Platform Sync", "Predictive Analytics"],
+      title: "Custom Software",
+      desc: "Powerful software solutions that simplify operations and improve productivity.",
+      icon: Settings,
+      iconBg: "bg-[#ECFDF5] text-[#10B981]",
+      arrowBg: "bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white",
+      activeBorder: "border-emerald-400 shadow-[0_8px_30px_rgba(16,185,129,0.12)]",
+    },
+    {
+      title: "AI & Automation",
+      desc: "Smart automation and AI-powered solutions to help businesses work faster.",
+      icon: Bot,
+      iconBg: "bg-[#FFFBEB] text-[#F59E0B]",
+      arrowBg: "bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white",
+      activeBorder: "border-amber-400 shadow-[0_8px_30px_rgba(245,158,11,0.12)]",
     },
   ];
 
   return (
-    <section id="solutions" className="py-20 md:py-28 relative bg-slate-50/50">
+    <section
+      id="solutions"
+      className="py-20 md:py-28 relative bg-gradient-to-b from-white via-[#F9FBFE] to-white overflow-hidden"
+    >
+      {/* Decorative ambient background glows */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-100/30 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-100/30 blur-3xl" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          {/* Left Column: Title & CTA */}
-          <div className="lg:col-span-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2.5 block">
-                OUR SOLUTIONS
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column: Eyebrow, Title, Subtitle & CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-4 flex flex-col items-start text-left"
+          >
+            {/* Eyebrow badge with Sparkles icon */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50/90 border border-blue-200/80 shadow-2xs mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>OUR SOLUTIONS</span>
+            </div>
+
+            {/* Headline */}
+            <h2 className="text-4xl sm:text-5xl lg:text-[48px] font-black text-[#0B132B] tracking-tight leading-[1.14]">
+              Powering <br />
+              Businesses with <br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0062FF] via-[#7928CA] to-[#9333EA]">
+                Smart Solutions.
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.18]">
-                Powering Businesses with{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                  Smart Solutions
-                </span>
-              </h2>
-              <p className="mt-5 text-base text-slate-600 leading-relaxed font-normal">
-                We create custom digital systems tailored to different industries
-                and business types, helping you work smarter, grow faster and reach
-                further.
-              </p>
+            </h2>
 
-              <div className="mt-8">
-                <button
-                  onClick={onOpenInquiry}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 shadow-md shadow-indigo-500/20 hover:shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all text-sm group"
-                >
-                  <span>Explore All Solutions</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-            </motion.div>
-          </div>
+            {/* Description Paragraph */}
+            <p className="mt-5 text-base text-slate-600 leading-relaxed font-normal max-w-md">
+              We create custom digital solutions tailored to different industries
+              and business needs, helping you work smarter, grow faster and reach
+              further.
+            </p>
 
-          {/* Center Column: 3D Multi-Device Visual Showcase */}
-          <div className="lg:col-span-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-3xl p-2 bg-gradient-to-b from-white to-slate-100 border border-slate-200/80 shadow-2xl shadow-indigo-500/10 group"
-            >
-              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-slate-950">
-                <Image
-                  src="/hero/solutions-devices.jpg"
-                  alt="ZetasBuild Smart Business Solutions Suite"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+            {/* Explore Our Solutions Pill Button */}
+            <div className="mt-8">
+              <button
+                onClick={() => onOpenInquiry?.(solutions[activeSolution]?.title)}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white bg-gradient-to-r from-[#0062FF] via-[#4F46E5] to-[#8B5CF6] shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-sm whitespace-nowrap group"
+              >
+                <span>Explore Our Solutions</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          </motion.div>
 
-              {/* Active preview overlay pills */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSolution}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute bottom-4 inset-x-4 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-3 shadow-lg"
-                >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-2 h-2 rounded-full bg-indigo-600" />
-                    <span className="text-xs font-bold text-slate-800">
-                      {solutions[activeSolution].title}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {solutions[activeSolution].features.map((feat) => (
-                      <span
-                        key={feat}
-                        className="text-[10px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full"
-                      >
-                        ✓ {feat}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
-          </div>
+          {/* Center Column: 3D Multi-Device & Tech Workspace Visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-4 flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-[370px] sm:max-w-[410px] aspect-[350/390] select-none pointer-events-none flex items-center justify-center">
+              <Image
+                src="/hero/solutions_3d_pure_transparent.png"
+                alt="ZetasBuild Powering Businesses with Smart Solutions 3D Visual"
+                width={410}
+                height={457}
+                priority
+                className="object-contain"
+              />
+            </div>
+          </motion.div>
 
-          {/* Right Column: Interactive Solution Buttons */}
-          <div className="lg:col-span-4 flex flex-col gap-2.5">
+          {/* Right Column: 4 Interactive Solution Cards */}
+          <div className="lg:col-span-4 flex flex-col gap-3.5 w-full">
             {solutions.map((item, idx) => {
               const Icon = item.icon;
               const isActive = activeSolution === idx;
               return (
-                <motion.button
+                <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  onClick={() => setActiveSolution(idx)}
-                  className={`w-full text-left p-3.5 rounded-2xl border transition-all duration-200 flex items-center justify-between group ${
+                  transition={{ duration: 0.4, delay: idx * 0.06 }}
+                  onClick={() => {
+                    setActiveSolution(idx);
+                    onOpenInquiry?.(item.title);
+                  }}
+                  className={`w-full p-4 sm:p-4.5 rounded-[22px] transition-all duration-300 cursor-pointer flex items-center justify-between group ${
                     isActive
-                      ? "bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10"
-                      : "bg-white/80 border-slate-200/70 hover:bg-white hover:border-slate-300 shadow-2xs"
+                      ? `bg-white border-2 ${item.activeBorder} -translate-y-0.5`
+                      : "bg-white/95 border border-slate-100 hover:border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-md hover:-translate-x-1"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3.5 pr-3">
+                    {/* Squircle Icon */}
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border transition-transform ${
-                        item.color
-                      } ${isActive ? "scale-105" : "group-hover:scale-105"}`}
+                      className={`w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105 shadow-2xs ${item.iconBg}`}
                     >
-                      <Icon className="w-4 h-4" />
+                      <Icon className="w-5 h-5" />
                     </div>
+
+                    {/* Title & Description */}
                     <div>
-                      <h4
-                        className={`text-sm font-bold transition-colors ${
-                          isActive ? "text-indigo-600" : "text-slate-800 group-hover:text-indigo-600"
-                        }`}
-                      >
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug">
                         {item.title}
-                      </h4>
+                      </h3>
+                      <p className="mt-1 text-xs text-slate-500 leading-relaxed font-normal">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
 
-                  <ArrowRight
-                    className={`w-4 h-4 transition-all ${
-                      isActive
-                        ? "text-indigo-600 translate-x-0.5"
-                        : "text-slate-300 group-hover:text-slate-500 group-hover:translate-x-0.5"
-                    }`}
-                  />
-                </motion.button>
+                  {/* Circular Arrow Action Button */}
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${item.arrowBg}`}
+                  >
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </motion.div>
               );
             })}
           </div>
