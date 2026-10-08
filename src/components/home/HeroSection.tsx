@@ -164,258 +164,359 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
             </motion.div>
           </div>
 
-          {/* Right Column: Exact Seamless 3D Scene with 3D Animated Robot */}
-          <div className="lg:col-span-6 relative flex justify-center items-center">
-            {/* Ambient circular pedestal lighting behind the 3D scene */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-to-tr from-blue-400/15 via-purple-400/15 to-cyan-400/10 blur-2xl pointer-events-none" />
+            {/* Right Column: Exact 3D Multi-Layer Recreated Scene */}
+            <div className="lg:col-span-6 relative flex justify-center items-center">
+              {/* Ambient circular pedestal lighting behind the 3D scene */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-to-tr from-blue-400/15 via-purple-400/15 to-cyan-400/10 blur-3xl pointer-events-none" />
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-              }}
-              className="relative w-full max-w-[640px] aspect-[574/410] select-none"
-            >
-              {/* Layer 1: Seamless Feathered 3D Scene Plate */}
-              <div className="absolute inset-0 w-full h-full pointer-events-none">
-                <Image
-                  src="/hero/hero-bg-feathered.png"
-                  alt="ZetasBuild 3D Futuristic Digital Solutions Scene"
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </div>
-
-              {/* Dynamic Pedestal Neon Glow Accent */}
               <motion.div
-                animate={{
-                  opacity: [0.35, 0.65, 0.35],
-                  scale: [0.98, 1.02, 0.98],
-                }}
-                transition={{
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute bottom-[6%] left-[34%] -translate-x-1/2 w-[52%] h-[18%] rounded-[100%] bg-gradient-to-r from-cyan-400/20 via-blue-500/25 to-purple-500/20 blur-md pointer-events-none"
-              />
-
-              {/* Layer 2: 3D Animated Robot Layer */}
-              <div
-                className="absolute"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
                 style={{
-                  left: "39.20%",
-                  top: "3.66%",
-                  width: "33.97%",
-                  height: "42.68%",
+                  rotateX,
+                  rotateY,
                   transformStyle: "preserve-3d",
                 }}
+                className="relative w-full max-w-[640px] aspect-[1200/896] select-none"
               >
-                {/* Robot Dynamic Levitating & 3D Parallax Tilt Container */}
+                {/* Layer 1: Clean Base Workspace Plate (Pedestal, Laptop, Phone, Plant, Ribbon) */}
+                <div
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  style={{ transform: "translateZ(0px)" }}
+                >
+                  <Image
+                    src="/hero/hero_workspace_clean.png"
+                    alt="ZetasBuild 3D Futuristic Workspace Scene"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 640px"
+                    className="object-contain"
+                  />
+                </div>
+
+                {/* Dynamic Pedestal Neon Glow Accent */}
                 <motion.div
                   animate={{
-                    y: isRobotHovered ? -8 : [-5, 5, -5],
-                    rotateZ: isRobotHovered ? 2.5 : [-2, 2.5, -2],
-                    scale: isRobotHovered ? 1.05 : [1, 1.02, 1],
+                    opacity: [0.35, 0.7, 0.35],
+                    scale: [0.98, 1.02, 0.98],
                   }}
                   transition={{
-                    y: {
-                      duration: isRobotHovered ? 0.3 : 4,
-                      repeat: isRobotHovered ? 0 : Infinity,
-                      ease: "easeInOut",
-                    },
-                    rotateZ: {
-                      duration: 4.5,
-                      repeat: isRobotHovered ? 0 : Infinity,
-                      ease: "easeInOut",
-                    },
-                    scale: {
-                      duration: 3.5,
-                      repeat: isRobotHovered ? 0 : Infinity,
-                      ease: "easeInOut",
-                    },
+                    duration: 3.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
                   }}
+                  className="absolute bottom-[5%] left-[45%] -translate-x-1/2 w-[55%] h-[16%] rounded-[100%] bg-gradient-to-r from-cyan-400/25 via-blue-500/30 to-purple-500/25 blur-lg pointer-events-none"
+                  style={{ transform: "translateZ(5px)" }}
+                />
+
+                {/* Layer 2: 3D Animated Floating Robot Companion */}
+                <div
+                  className="absolute"
                   style={{
-                    rotateX: robotRotateX,
-                    rotateY: robotRotateY,
+                    left: "53%",
+                    top: "0%",
+                    width: "29%",
+                    aspectRatio: "712/848",
                     transformStyle: "preserve-3d",
-                    transformOrigin: "50% 85%",
+                    transform: "translateZ(45px)",
+                    zIndex: 25,
                   }}
-                  onMouseEnter={() => setIsRobotHovered(true)}
-                  onMouseLeave={() => setIsRobotHovered(false)}
-                  className="relative w-full h-full cursor-pointer group"
                 >
-                  {/* Floating Soft Ambient Blue Glow behind the robot */}
                   <motion.div
                     animate={{
-                      scale: [0.9, 1.1, 0.9],
-                      opacity: [0.5, 0.8, 0.5],
+                      y: isRobotHovered ? -10 : [-7, 7, -7],
+                      rotateZ: isRobotHovered ? 2.5 : [-2, 2.5, -2],
+                      scale: isRobotHovered ? 1.06 : [1, 1.025, 1],
                     }}
                     transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
+                      y: {
+                        duration: isRobotHovered ? 0.3 : 4,
+                        repeat: isRobotHovered ? 0 : Infinity,
+                        ease: "easeInOut",
+                      },
+                      rotateZ: {
+                        duration: 4.5,
+                        repeat: isRobotHovered ? 0 : Infinity,
+                        ease: "easeInOut",
+                      },
+                      scale: {
+                        duration: 3.5,
+                        repeat: isRobotHovered ? 0 : Infinity,
+                        ease: "easeInOut",
+                      },
                     }}
-                    className="absolute inset-0 rounded-full bg-cyan-400/25 blur-lg pointer-events-none"
+                    style={{
+                      rotateX: robotRotateX,
+                      rotateY: robotRotateY,
+                      transformStyle: "preserve-3d",
+                      transformOrigin: "50% 85%",
+                    }}
+                    onMouseEnter={() => setIsRobotHovered(true)}
+                    onMouseLeave={() => setIsRobotHovered(false)}
+                    className="relative w-full h-full cursor-pointer group"
+                  >
+                    {/* Floating Soft Ambient Glow behind the robot */}
+                    <motion.div
+                      animate={{
+                        scale: [0.9, 1.15, 0.9],
+                        opacity: [0.4, 0.75, 0.4],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inset-0 rounded-full bg-cyan-400/25 blur-xl pointer-events-none"
+                    />
+
+                    {/* Isolated 3D Transparent Robot Asset */}
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/hero/hero_robot_character.png"
+                        alt="ZetasBuild 3D Animated Robot Companion"
+                        fill
+                        priority
+                        sizes="(max-width: 1024px) 25vw, 180px"
+                        className="object-contain drop-shadow-[0_12px_24px_rgba(30,58,138,0.22)] transition-transform duration-300 group-hover:brightness-105"
+                      />
+
+                      {/* Interactive greeting speech bubble on hover */}
+                      {isRobotHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-cyan-200/90 rounded-full px-3 py-1 shadow-xl shadow-cyan-500/20 flex items-center gap-1.5 whitespace-nowrap pointer-events-none z-30"
+                        >
+                          <Bot className="w-3.5 h-3.5 text-cyan-600" />
+                          <span className="text-[11px] font-bold text-slate-800">
+                            Hello! Let&apos;s Build
+                          </span>
+                        </motion.div>
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Layer 3: Floating 3D Service Badges Collection */}
+                {/* Badge 1: Custom Development (Top Left) */}
+                <motion.div
+                  className="absolute cursor-pointer"
+                  style={{
+                    top: "6%",
+                    left: "1%",
+                    width: "31%",
+                    aspectRatio: "906/350",
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(38px)",
+                    zIndex: 20,
+                  }}
+                  animate={{
+                    y: [-6, 6, -6],
+                    rotateZ: [-1, 1.2, -1],
+                  }}
+                  transition={{
+                    duration: 4.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0,
+                  }}
+                  whileHover={{
+                    scale: 1.07,
+                    y: -8,
+                    transition: { duration: 0.25 },
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_badge_custom_dev.png"
+                    alt="Custom Development - Web & Mobile Apps"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 30vw, 200px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
                   />
-
-                  {/* Cutout Robot Transparent Graphic */}
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/hero/robot_isolated.png"
-                      alt="ZetasBuild 3D Animated Companion Robot"
-                      fill
-                      priority
-                      className="object-contain drop-shadow-[0_8px_16px_rgba(30,58,138,0.25)] transition-transform duration-300 group-hover:brightness-105"
-                    />
-
-                    {/* Cyan LED Eyes & Visor Light Animation Overlay */}
-                    {/* Left Eye LED Glow Arc */}
-                    <motion.div
-                      animate={{
-                        scaleY: [1, 1, 0.08, 1, 1],
-                        opacity: [0.85, 1, 0.85],
-                      }}
-                      transition={{
-                        scaleY: {
-                          duration: 4,
-                          repeat: Infinity,
-                          times: [0, 0.45, 0.5, 0.55, 1],
-                        },
-                        opacity: {
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        },
-                      }}
-                      className="absolute rounded-full pointer-events-none"
-                      style={{
-                        left: "51.5%",
-                        top: "23.3%",
-                        width: "6.5%",
-                        height: "5%",
-                        backgroundColor: "#00F0FF",
-                        boxShadow:
-                          "0 0 6px #00F0FF, 0 0 12px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.7)",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-
-                    {/* Right Eye LED Glow Arc */}
-                    <motion.div
-                      animate={{
-                        scaleY: [1, 1, 0.08, 1, 1],
-                        opacity: [0.85, 1, 0.85],
-                      }}
-                      transition={{
-                        scaleY: {
-                          duration: 4,
-                          repeat: Infinity,
-                          times: [0, 0.45, 0.5, 0.55, 1],
-                        },
-                        opacity: {
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        },
-                      }}
-                      className="absolute rounded-full pointer-events-none"
-                      style={{
-                        left: "71.5%",
-                        top: "22.8%",
-                        width: "6.5%",
-                        height: "5%",
-                        backgroundColor: "#00F0FF",
-                        boxShadow:
-                          "0 0 6px #00F0FF, 0 0 12px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.7)",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-
-                    {/* Left Ear Ring LED Light Pulse */}
-                    <motion.div
-                      animate={{
-                        opacity: [0.6, 1, 0.6],
-                        scale: [0.95, 1.15, 0.95],
-                      }}
-                      transition={{
-                        duration: 2.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="absolute rounded-full pointer-events-none"
-                      style={{
-                        left: "34%",
-                        top: "24%",
-                        width: "4%",
-                        height: "4%",
-                        backgroundColor: "#00F0FF",
-                        boxShadow: "0 0 8px #00F0FF, 0 0 14px rgba(0, 240, 255, 0.8)",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-
-                    {/* Right Ear Ring LED Light Pulse */}
-                    <motion.div
-                      animate={{
-                        opacity: [0.6, 1, 0.6],
-                        scale: [0.95, 1.15, 0.95],
-                      }}
-                      transition={{
-                        duration: 2.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 0.3,
-                      }}
-                      className="absolute rounded-full pointer-events-none"
-                      style={{
-                        left: "89%",
-                        top: "24%",
-                        width: "4%",
-                        height: "4%",
-                        backgroundColor: "#00F0FF",
-                        boxShadow: "0 0 8px #00F0FF, 0 0 14px rgba(0, 240, 255, 0.8)",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
-                  </div>
-
-                  {/* Interactive greeting speech bubble on hover */}
-                  {isRobotHovered && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-cyan-200/80 rounded-full px-3 py-1 shadow-lg shadow-cyan-500/15 flex items-center gap-1.5 whitespace-nowrap pointer-events-none z-30"
-                    >
-                      <Bot className="w-3.5 h-3.5 text-cyan-600" />
-                      <span className="text-[10px] font-bold text-slate-800">
-                        Hello! Let&apos;s Build
-                      </span>
-                    </motion.div>
-                  )}
                 </motion.div>
-              </div>
 
-              {/* Layer 3: Foreground Laptop Overlay */}
-              {/* Ensures the robot naturally floats BEHIND the laptop top bezel in 3D */}
-              <div className="absolute inset-0 w-full h-full pointer-events-none z-20">
-                <Image
-                  src="/hero/laptop_foreground_feathered.png"
-                  alt="Foreground Laptop Depth Layer"
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-          </div>
+                {/* Badge 2: AI & ML (Bottom Left) */}
+                <motion.div
+                  className="absolute cursor-pointer"
+                  style={{
+                    top: "32%",
+                    left: "-5%",
+                    width: "26%",
+                    aspectRatio: "973/448",
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(42px)",
+                    zIndex: 22,
+                  }}
+                  animate={{
+                    y: [6, -6, 6],
+                    rotateZ: [1.2, -1.2, 1.2],
+                  }}
+                  transition={{
+                    duration: 4.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.7,
+                  }}
+                  whileHover={{
+                    scale: 1.07,
+                    y: -8,
+                    transition: { duration: 0.25 },
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_badge_ai_ml.png"
+                    alt="AI & ML - Smarter Solutions"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 25vw, 175px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                  />
+                </motion.div>
+
+                {/* Badge 3: UI/UX Design (Top Right) */}
+                <motion.div
+                  className="absolute cursor-pointer"
+                  style={{
+                    top: "13%",
+                    right: "0%",
+                    width: "31%",
+                    aspectRatio: "1032/464",
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(40px)",
+                    zIndex: 20,
+                  }}
+                  animate={{
+                    y: [-5, 7, -5],
+                    rotateZ: [1, -1.2, 1],
+                  }}
+                  transition={{
+                    duration: 4.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.35,
+                  }}
+                  whileHover={{
+                    scale: 1.07,
+                    y: -8,
+                    transition: { duration: 0.25 },
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_badge_ui_ux.png"
+                    alt="UI/UX Design - Better Experiences"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 30vw, 200px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                  />
+                </motion.div>
+
+                {/* Badge 4: Web Security (Bottom Right) */}
+                <motion.div
+                  className="absolute cursor-pointer"
+                  style={{
+                    top: "42%",
+                    right: "-4%",
+                    width: "28%",
+                    aspectRatio: "905/414",
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(35px)",
+                    zIndex: 22,
+                  }}
+                  animate={{
+                    y: [5, -7, 5],
+                    rotateZ: [-1.2, 1.2, -1.2],
+                  }}
+                  transition={{
+                    duration: 5.0,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1.1,
+                  }}
+                  whileHover={{
+                    scale: 1.07,
+                    y: -8,
+                    transition: { duration: 0.25 },
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_badge_web_security.png"
+                    alt="Web Security - Safe & Reliable"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 28vw, 180px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                  />
+                </motion.div>
+
+                {/* Layer 4: Floating 3D Crystal Cubes */}
+                {/* Cube 1: Top-Center drifting */}
+                <motion.div
+                  className="absolute pointer-events-none"
+                  style={{
+                    top: "7%",
+                    left: "38%",
+                    width: "4.5%",
+                    aspectRatio: "604/712",
+                    transform: "translateZ(55px)",
+                    zIndex: 18,
+                  }}
+                  animate={{
+                    y: [-4, 5, -4],
+                    rotate: [-3, 4, -3],
+                  }}
+                  transition={{
+                    duration: 5.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_cube_3d.png"
+                    alt="Floating 3D Crystal Cube"
+                    fill
+                    sizes="35px"
+                    className="object-contain drop-shadow-[0_8px_16px_rgba(0,180,255,0.3)]"
+                  />
+                </motion.div>
+
+                {/* Cube 2: Bottom-Right drifting */}
+                <motion.div
+                  className="absolute pointer-events-none"
+                  style={{
+                    top: "62%",
+                    right: "6%",
+                    width: "5%",
+                    aspectRatio: "604/712",
+                    transform: "translateZ(50px)",
+                    zIndex: 18,
+                  }}
+                  animate={{
+                    y: [5, -5, 5],
+                    rotate: [4, -4, 4],
+                  }}
+                  transition={{
+                    duration: 4.9,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.8,
+                  }}
+                >
+                  <Image
+                    src="/hero/hero_cube_3d.png"
+                    alt="Floating 3D Crystal Cube"
+                    fill
+                    sizes="40px"
+                    className="object-contain drop-shadow-[0_8px_16px_rgba(0,180,255,0.3)]"
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
         </div>
       </div>
     </section>
