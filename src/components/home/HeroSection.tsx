@@ -164,10 +164,10 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
             </motion.div>
           </div>
 
-            {/* Right Column: Exact 3D Multi-Layer Recreated Scene */}
+            {/* Right Column: Exact Recreated 3D Scene Matching Reference Image */}
             <div className="lg:col-span-6 relative flex justify-center items-center">
               {/* Ambient circular pedestal lighting behind the 3D scene */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-to-tr from-blue-400/15 via-purple-400/15 to-cyan-400/10 blur-3xl pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-to-tr from-cyan-400/15 via-blue-400/15 to-purple-400/15 blur-3xl pointer-events-none" />
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -182,14 +182,14 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                 }}
                 className="relative w-full max-w-[640px] aspect-[1200/896] select-none"
               >
-                {/* Layer 1: Clean Base Workspace Plate (Pedestal, Laptop, Phone, Plant, Ribbon) */}
+                {/* Layer 1: Clean Base Workspace Plate (Pedestal, Laptop, Phone, Plant, Spheres, Cube) */}
                 <div
                   className="absolute inset-0 w-full h-full pointer-events-none"
                   style={{ transform: "translateZ(0px)" }}
                 >
                   <Image
-                    src="/hero/hero_workspace_clean.png"
-                    alt="ZetasBuild 3D Futuristic Workspace Scene"
+                    src="/hero/hero_workspace_v2_clean.png"
+                    alt="ZetasBuild 3D Futuristic Workspace Scene - Build Smarter Together"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 640px"
@@ -197,10 +197,11 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                   />
                 </div>
 
-                {/* Dynamic Pedestal Neon Glow Accent */}
+                {/* Dynamic Dual-Tone Pedestal Neon Glow Accents */}
+                {/* Left Cyan Glow Accent */}
                 <motion.div
                   animate={{
-                    opacity: [0.35, 0.7, 0.35],
+                    opacity: [0.4, 0.75, 0.4],
                     scale: [0.98, 1.02, 0.98],
                   }}
                   transition={{
@@ -208,114 +209,41 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute bottom-[5%] left-[45%] -translate-x-1/2 w-[55%] h-[16%] rounded-[100%] bg-gradient-to-r from-cyan-400/25 via-blue-500/30 to-purple-500/25 blur-lg pointer-events-none"
-                  style={{ transform: "translateZ(5px)" }}
+                  className="absolute bottom-[6%] left-[28%] -translate-x-1/2 w-[35%] h-[14%] rounded-[100%] bg-cyan-400/30 blur-md pointer-events-none"
+                  style={{ transform: "translateZ(6px)" }}
+                />
+                {/* Right Magenta/Violet Glow Accent */}
+                <motion.div
+                  animate={{
+                    opacity: [0.4, 0.75, 0.4],
+                    scale: [0.98, 1.02, 0.98],
+                  }}
+                  transition={{
+                    duration: 3.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                  className="absolute bottom-[5%] right-[20%] translate-x-1/2 w-[35%] h-[14%] rounded-[100%] bg-fuchsia-500/25 blur-md pointer-events-none"
+                  style={{ transform: "translateZ(6px)" }}
                 />
 
-                {/* Layer 2: 3D Animated Floating Robot Companion */}
-                <div
-                  className="absolute"
-                  style={{
-                    left: "53%",
-                    top: "0%",
-                    width: "29%",
-                    aspectRatio: "712/848",
-                    transformStyle: "preserve-3d",
-                    transform: "translateZ(45px)",
-                    zIndex: 25,
-                  }}
-                >
-                  <motion.div
-                    animate={{
-                      y: isRobotHovered ? -10 : [-7, 7, -7],
-                      rotateZ: isRobotHovered ? 2.5 : [-2, 2.5, -2],
-                      scale: isRobotHovered ? 1.06 : [1, 1.025, 1],
-                    }}
-                    transition={{
-                      y: {
-                        duration: isRobotHovered ? 0.3 : 4,
-                        repeat: isRobotHovered ? 0 : Infinity,
-                        ease: "easeInOut",
-                      },
-                      rotateZ: {
-                        duration: 4.5,
-                        repeat: isRobotHovered ? 0 : Infinity,
-                        ease: "easeInOut",
-                      },
-                      scale: {
-                        duration: 3.5,
-                        repeat: isRobotHovered ? 0 : Infinity,
-                        ease: "easeInOut",
-                      },
-                    }}
-                    style={{
-                      rotateX: robotRotateX,
-                      rotateY: robotRotateY,
-                      transformStyle: "preserve-3d",
-                      transformOrigin: "50% 85%",
-                    }}
-                    onMouseEnter={() => setIsRobotHovered(true)}
-                    onMouseLeave={() => setIsRobotHovered(false)}
-                    className="relative w-full h-full cursor-pointer group"
-                  >
-                    {/* Floating Soft Ambient Glow behind the robot */}
-                    <motion.div
-                      animate={{
-                        scale: [0.9, 1.15, 0.9],
-                        opacity: [0.4, 0.75, 0.4],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="absolute inset-0 rounded-full bg-cyan-400/25 blur-xl pointer-events-none"
-                    />
-
-                    {/* Isolated 3D Transparent Robot Asset */}
-                    <div className="relative w-full h-full">
-                      <Image
-                        src="/hero/hero_robot_character.png"
-                        alt="ZetasBuild 3D Animated Robot Companion"
-                        fill
-                        priority
-                        sizes="(max-width: 1024px) 25vw, 180px"
-                        className="object-contain drop-shadow-[0_12px_24px_rgba(30,58,138,0.22)] transition-transform duration-300 group-hover:brightness-105"
-                      />
-
-                      {/* Interactive greeting speech bubble on hover */}
-                      {isRobotHovered && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-cyan-200/90 rounded-full px-3 py-1 shadow-xl shadow-cyan-500/20 flex items-center gap-1.5 whitespace-nowrap pointer-events-none z-30"
-                        >
-                          <Bot className="w-3.5 h-3.5 text-cyan-600" />
-                          <span className="text-[11px] font-bold text-slate-800">
-                            Hello! Let&apos;s Build
-                          </span>
-                        </motion.div>
-                      )}
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Layer 3: Floating 3D Service Badges Collection */}
-                {/* Badge 1: Custom Development (Top Left) */}
+                {/* Layer 2: Floating 3D Service Badges Collection */}
+                {/* Badge 1: Web Development (Fast · Secure · Scalable) */}
                 <motion.div
                   className="absolute cursor-pointer"
                   style={{
-                    top: "6%",
-                    left: "1%",
-                    width: "31%",
-                    aspectRatio: "906/350",
+                    top: "5%",
+                    left: "28%",
+                    width: "32%",
+                    aspectRatio: "1001/388",
                     transformStyle: "preserve-3d",
-                    transform: "translateZ(38px)",
-                    zIndex: 20,
+                    transform: "translateZ(42px)",
+                    zIndex: 22,
                   }}
                   animate={{
-                    y: [-6, 6, -6],
-                    rotateZ: [-1, 1.2, -1],
+                    y: [-5, 6, -5],
+                    rotateZ: [-1, 1, -1],
                   }}
                   transition={{
                     duration: 4.4,
@@ -324,74 +252,74 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                     delay: 0,
                   }}
                   whileHover={{
-                    scale: 1.07,
+                    scale: 1.08,
                     y: -8,
                     transition: { duration: 0.25 },
                   }}
                 >
                   <Image
-                    src="/hero/hero_badge_custom_dev.png"
-                    alt="Custom Development - Web & Mobile Apps"
+                    src="/hero/hero2_badge_web_dev.png"
+                    alt="Web Development - Fast · Secure · Scalable"
                     fill
                     priority
-                    sizes="(max-width: 1024px) 30vw, 200px"
-                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                    sizes="(max-width: 1024px) 32vw, 210px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.15)]"
                   />
                 </motion.div>
 
-                {/* Badge 2: AI & ML (Bottom Left) */}
+                {/* Badge 2: AI & ML (Smarter Solutions) - Emerald Green Icon */}
                 <motion.div
                   className="absolute cursor-pointer"
                   style={{
-                    top: "32%",
+                    top: "22%",
                     left: "-5%",
-                    width: "26%",
-                    aspectRatio: "973/448",
+                    width: "29%",
+                    aspectRatio: "922/460",
                     transformStyle: "preserve-3d",
-                    transform: "translateZ(42px)",
-                    zIndex: 22,
+                    transform: "translateZ(46px)",
+                    zIndex: 24,
                   }}
                   animate={{
-                    y: [6, -6, 6],
+                    y: [6, -5, 6],
                     rotateZ: [1.2, -1.2, 1.2],
                   }}
                   transition={{
                     duration: 4.8,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 0.7,
+                    delay: 0.6,
                   }}
                   whileHover={{
-                    scale: 1.07,
+                    scale: 1.08,
                     y: -8,
                     transition: { duration: 0.25 },
                   }}
                 >
                   <Image
-                    src="/hero/hero_badge_ai_ml.png"
+                    src="/hero/hero2_badge_ai_ml.png"
                     alt="AI & ML - Smarter Solutions"
                     fill
                     priority
-                    sizes="(max-width: 1024px) 25vw, 175px"
-                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                    sizes="(max-width: 1024px) 28vw, 190px"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.15)]"
                   />
                 </motion.div>
 
-                {/* Badge 3: UI/UX Design (Top Right) */}
+                {/* Badge 3: Mobile Apps (iOS & Android) - Purple Icon */}
                 <motion.div
                   className="absolute cursor-pointer"
                   style={{
-                    top: "13%",
-                    right: "0%",
-                    width: "31%",
-                    aspectRatio: "1032/464",
+                    top: "16%",
+                    right: "-4%",
+                    width: "30%",
+                    aspectRatio: "966/398",
                     transformStyle: "preserve-3d",
                     transform: "translateZ(40px)",
-                    zIndex: 20,
+                    zIndex: 22,
                   }}
                   animate={{
-                    y: [-5, 7, -5],
-                    rotateZ: [1, -1.2, 1],
+                    y: [-6, 5, -6],
+                    rotateZ: [-1, 1.2, -1],
                   }}
                   transition={{
                     duration: 4.6,
@@ -400,73 +328,34 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                     delay: 0.35,
                   }}
                   whileHover={{
-                    scale: 1.07,
+                    scale: 1.08,
                     y: -8,
                     transition: { duration: 0.25 },
                   }}
                 >
                   <Image
-                    src="/hero/hero_badge_ui_ux.png"
-                    alt="UI/UX Design - Better Experiences"
+                    src="/hero/hero2_badge_mobile_apps.png"
+                    alt="Mobile Apps - iOS & Android"
                     fill
                     priority
                     sizes="(max-width: 1024px) 30vw, 200px"
-                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
+                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.15)]"
                   />
                 </motion.div>
 
-                {/* Badge 4: Web Security (Bottom Right) */}
-                <motion.div
-                  className="absolute cursor-pointer"
-                  style={{
-                    top: "42%",
-                    right: "-4%",
-                    width: "28%",
-                    aspectRatio: "905/414",
-                    transformStyle: "preserve-3d",
-                    transform: "translateZ(35px)",
-                    zIndex: 22,
-                  }}
-                  animate={{
-                    y: [5, -7, 5],
-                    rotateZ: [-1.2, 1.2, -1.2],
-                  }}
-                  transition={{
-                    duration: 5.0,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1.1,
-                  }}
-                  whileHover={{
-                    scale: 1.07,
-                    y: -8,
-                    transition: { duration: 0.25 },
-                  }}
-                >
-                  <Image
-                    src="/hero/hero_badge_web_security.png"
-                    alt="Web Security - Safe & Reliable"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 28vw, 180px"
-                    className="object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.14)]"
-                  />
-                </motion.div>
-
-                {/* Layer 4: Floating 3D Crystal Cubes */}
-                {/* Cube 1: Top-Center drifting */}
+                {/* Layer 3: Floating 3D Crystal Depth Accent */}
                 <motion.div
                   className="absolute pointer-events-none"
                   style={{
-                    top: "7%",
-                    left: "38%",
+                    top: "6%",
+                    right: "12%",
                     width: "4.5%",
                     aspectRatio: "604/712",
                     transform: "translateZ(55px)",
                     zIndex: 18,
                   }}
                   animate={{
-                    y: [-4, 5, -4],
+                    y: [-4, 6, -4],
                     rotate: [-3, 4, -3],
                   }}
                   transition={{
@@ -481,38 +370,7 @@ export function HeroSection({ onOpenInquiry }: HeroSectionProps) {
                     alt="Floating 3D Crystal Cube"
                     fill
                     sizes="35px"
-                    className="object-contain drop-shadow-[0_8px_16px_rgba(0,180,255,0.3)]"
-                  />
-                </motion.div>
-
-                {/* Cube 2: Bottom-Right drifting */}
-                <motion.div
-                  className="absolute pointer-events-none"
-                  style={{
-                    top: "62%",
-                    right: "6%",
-                    width: "5%",
-                    aspectRatio: "604/712",
-                    transform: "translateZ(50px)",
-                    zIndex: 18,
-                  }}
-                  animate={{
-                    y: [5, -5, 5],
-                    rotate: [4, -4, 4],
-                  }}
-                  transition={{
-                    duration: 4.9,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.8,
-                  }}
-                >
-                  <Image
-                    src="/hero/hero_cube_3d.png"
-                    alt="Floating 3D Crystal Cube"
-                    fill
-                    sizes="40px"
-                    className="object-contain drop-shadow-[0_8px_16px_rgba(0,180,255,0.3)]"
+                    className="object-contain drop-shadow-[0_8px_16px_rgba(147,51,234,0.3)]"
                   />
                 </motion.div>
               </motion.div>
